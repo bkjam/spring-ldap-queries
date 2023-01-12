@@ -1,0 +1,45 @@
+# ------------------------------------------------------------------------------
+#   Create Organizational Units
+# ------------------------------------------------------------------------------
+
+dn: ou=Users,dc=example,dc=org
+changetype: add
+objectclass: organizationalUnit
+ou: Users
+
+# ------------------------------------------------------------------------------
+#   Create Users
+# ------------------------------------------------------------------------------
+
+dn: cn=U0,ou=Users,dc=example,dc=org
+changetype: add
+objectclass: inetOrgPerson
+cn: U0
+givenname: Amanda
+sn: Amanda
+displayname: Amanda
+mail: amanda@example.org
+mail: amanda@test.org
+userpassword: amanda
+
+dn: cn=U1,ou=Users,dc=example,dc=org
+changetype: add
+objectclass: inetOrgPerson
+cn: U1
+givenname: Bernice
+sn: Bernice
+displayname: Bernice
+mail: bernice@example.org
+mail: bernice@test.org
+userpassword: bernice
+
+dn: cn=U2,ou=Users,dc=example,dc=org
+changetype: add
+objectclass: inetOrgPerson
+cn: U2
+givenname: Charmaine
+sn: Charmaine
+displayname: Charmaine
+mail: charmaine@example.org
+mail: charmaine@test.org
+userpassword: charmaine
