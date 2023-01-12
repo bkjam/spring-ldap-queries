@@ -29,8 +29,10 @@ class LdapQueryService(
     private fun queryWithAttributeMapper(userId: String): AdUser? {
         val usersFound = ldapTemplate.search("ou=Users", "uid=$userId", AttributesMapper { attributes ->
             val id = attributes.get("uid").get().toString()
+            val cn = attributes.get("cn").get().toString()
             val name = attributes.get("displayname").get().toString()
-            val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper("cn=U0,ou=Users", "mail")
+            val emails = attributes.get("mail").all.toList() as List<String>
+            //val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper("cn=$cn,ou=Users", "mail")
             AdUser(userId = id, name = name, emails = emails)
         })
         return if (usersFound.isNotEmpty()) usersFound[0] else null
@@ -42,8 +44,8 @@ class LdapQueryService(
                 val dn = ctx.dn
                 val id = ctx.getStringAttribute("uid")
                 val name = ctx.getStringAttribute("displayname")
-                //val emails = ctx.getStringAttributes("mail")
-                val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper(dn.toString(), "mail")
+                val emails = ctx.getStringAttributes("mail").toList()
+                //val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper(dn.toString(), "mail")
                 return AdUser(id, name, emails)
             }
         })
