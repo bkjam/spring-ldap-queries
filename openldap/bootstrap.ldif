@@ -11,10 +11,11 @@ ou: Users
 #   Create Users
 # ------------------------------------------------------------------------------
 
-dn: cn=U0,ou=Users,dc=example,dc=org
+dn: cn=Amanda,ou=Users,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
-cn: U0
+uid: U0
+cn: Amanda
 givenname: Amanda
 sn: Amanda
 displayname: Amanda
@@ -22,10 +23,11 @@ mail: amanda@example.org
 mail: amanda@test.org
 userpassword: amanda
 
-dn: cn=U1,ou=Users,dc=example,dc=org
+dn: cn=Bernice,ou=Users,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
-cn: U1
+uid: U1
+cn: Bernice
 givenname: Bernice
 sn: Bernice
 displayname: Bernice
@@ -33,10 +35,11 @@ mail: bernice@example.org
 mail: bernice@test.org
 userpassword: bernice
 
-dn: cn=U2,ou=Users,dc=example,dc=org
+dn: cn=Charmaine,ou=Users,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
-cn: U2
+uid: U2
+cn: Charmaine
 givenname: Charmaine
 sn: Charmaine
 displayname: Charmaine

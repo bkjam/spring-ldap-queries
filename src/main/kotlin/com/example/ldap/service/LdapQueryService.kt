@@ -27,8 +27,8 @@ class LdapQueryService(
     }
 
     private fun queryWithAttributeMapper(userId: String): AdUser? {
-        val usersFound = ldapTemplate.search("ou=Users", "cn=$userId", AttributesMapper { attributes ->
-            val id = attributes.get("cn").get().toString()
+        val usersFound = ldapTemplate.search("ou=Users", "uid=$userId", AttributesMapper { attributes ->
+            val id = attributes.get("uid").get().toString()
             val name = attributes.get("displayname").get().toString()
             val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper("cn=U0,ou=Users", "mail")
             AdUser(userId = id, name = name, emails = emails)
@@ -37,10 +37,10 @@ class LdapQueryService(
     }
 
     private fun queryWithContextMapper(userId: String): AdUser? {
-        val usersFound = ldapTemplate.search("ou=Users", "cn=$userId", object: AbstractContextMapper<AdUser>() {
+        val usersFound = ldapTemplate.search("ou=Users", "uid=$userId", object: AbstractContextMapper<AdUser>() {
             override fun doMapFromContext(ctx: DirContextOperations): AdUser {
                 val dn = ctx.dn
-                val id = ctx.getStringAttribute("cn")
+                val id = ctx.getStringAttribute("uid")
                 val name = ctx.getStringAttribute("displayname")
                 //val emails = ctx.getStringAttributes("mail")
                 val emails = getMultiValuedAttributesWithDefaultIncrementAttributesMapper(dn.toString(), "mail")
@@ -52,6 +52,10 @@ class LdapQueryService(
 
     fun queryLdap(userId: String): AdUser? {
         logger.info("Searching for user ==> $userId")
-        return queryWithContextMapper(userId)
+        val adUser = queryWithContextMapper(userId)
+        if (adUser == null) {
+            logger.info("$userId is not found")
+        }
+        return adUser
     }
 }
