@@ -3,7 +3,7 @@
 This is an exploration/demo project on how to use LdapTemplate to craft LDAP Queries to retrieve information from the
 Active Directory (AD). You can read more about this project from the medium article below
 
-- [Link to article]()
+- [Link to article](https://medium.com/better-programming/how-to-query-the-active-directory-using-spring-boot-ldaptemplate-fe50fc84b446)
 
 ## Overview
 
