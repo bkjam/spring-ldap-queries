@@ -16,6 +16,7 @@ changetype: add
 objectclass: inetOrgPerson
 uid: U0
 cn: Amanda
+sn: Amanda
 givenname: Amanda
 displayname: Amanda
 mail: amanda@example.org
@@ -27,6 +28,7 @@ changetype: add
 objectclass: inetOrgPerson
 uid: U1
 cn: Becca
+sn: Becca
 givenname: Becca
 displayname: Becca
 mail: becca@example.org
@@ -38,6 +40,7 @@ changetype: add
 objectclass: inetOrgPerson
 uid: U2
 cn: Charmaine
+sn: Charmaine
 givenname: Charmaine
 displayname: Charmaine
 mail: charmaine@example.org
